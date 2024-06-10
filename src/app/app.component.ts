@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AsideComponent } from './aside/aside.component';
-import { HeaderComponent } from './header/header.component';
-import { CardComponent } from './card/card.component';
+import { AsideComponent } from './components/aside/aside.component';
+import { HeaderComponent } from './components/header/header.component';
+import { CardComponent } from './components/card/card.component';
 import { CommonModule } from '@angular/common';
 
-import courses from '../app/assets/courses.json';
+import { FilterService } from './services/filter.service';
+import { Course } from './data/courses';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +16,25 @@ import courses from '../app/assets/courses.json';
   styleUrl: './app.component.css'
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'devstream';
-  activeCourses = courses.filter(course => course.status);
-  inactiveCourses = courses.filter(course => !course.status);
+  private filterService = inject(FilterService);
+  private cdr = inject(ChangeDetectorRef)
+  
+  activeCourses: Course[] = [];
+  inactiveCourses: Course[] = [];
+  
+  ngOnInit(){
+    this.activeCourses = this.filterService.getActiveCourses();
+    this.inactiveCourses = this.filterService.getInactiveCourses();
+    this.cdr.detectChanges();
+  }
+
+  searchCourses(searchTerm: Event){
+    const value = (searchTerm.target as HTMLInputElement).value;
+    this.filterService.filterCourses(value);
+    this.activeCourses = this.filterService.getActiveCourses();
+    this.inactiveCourses = this.filterService.getInactiveCourses();
+    this.cdr.detectChanges();
+  }
 }

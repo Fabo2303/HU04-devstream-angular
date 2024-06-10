@@ -3,7 +3,8 @@
   <main id="category-visualization-main">
     <app-header></app-header>
     <section id="category-visualization-section-filter-and-create">
-      <input type="text" id="category-visualization-section-filter-input" placeholder="Buscar por nombre">
+      <input type="text" id="category-visualization-section-filter-input" placeholder="Buscar por nombre" 
+      (input)="searchCourses($event)">
       <button type="button" class="btn btn-primary btn-category" id="category-visualization-section-create-button">Nueva
         Categoría</button>
     </section>
