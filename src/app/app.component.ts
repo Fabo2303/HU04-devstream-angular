@@ -19,7 +19,6 @@ import { Course } from './data/courses';
 export class AppComponent implements OnInit{
   title = 'devstream';
   private filterService = inject(FilterService);
-  private cdr = inject(ChangeDetectorRef)
   
   activeCourses: Course[] = [];
   inactiveCourses: Course[] = [];
@@ -27,7 +26,6 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.activeCourses = this.filterService.getActiveCourses();
     this.inactiveCourses = this.filterService.getInactiveCourses();
-    this.cdr.detectChanges();
   }
 
   searchCourses(searchTerm: Event){
@@ -35,6 +33,5 @@ export class AppComponent implements OnInit{
     this.filterService.filterCourses(value);
     this.activeCourses = this.filterService.getActiveCourses();
     this.inactiveCourses = this.filterService.getInactiveCourses();
-    this.cdr.detectChanges();
   }
 }
