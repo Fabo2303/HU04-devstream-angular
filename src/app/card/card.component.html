@@ -1,0 +1,25 @@
+<div class="card" style="max-width: 387px; max-height: 420px;">
+    <img src="card.png" class="card-img-top" alt="Imagen de curso">
+    <div class="card-body"
+        style="position:relative; display: flex; flex-direction: column; gap: 20px;">
+        <h5 class="card-title" style="text-align: center;">{{title}}</h5>
+        <button id="card-options-{{title}}" height="24px" width="24px"style="position: absolute; right: 10px;">
+            <img src="dots.svg" alt="dots" >
+        </button>
+        
+        <div id="myMenu-{{title}}" class="options-menu">
+            <a href="#">Editar</a>
+            <a href="#">Deshabilitar</a>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 5px;">
+            <img src="card.png" alt="Icon unknown" width="30px" height="30px">
+            <p style="width: 100%; margin: 0;">{{lessonCount}} lecciones</p>
+        </div>
+        <div style="display: flex; align-items: center; gap:5px;">
+            <img src="card.png" alt="Icon unknown" width="30px" height="30px">
+            <p style="width: 100%; margin: 0;">{{instructor}} - {{instructorDate}}</p>
+        </div>
+        <p style="text-align: end;">{{editor}} - {{editorDate}}</p>
+    </div>
+</div>
